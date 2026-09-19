@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#07090e" />
+  <title>Master's Research Pitch Deck — Solo Speaking Drill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: #101524;
+      --card-surface: #171f34;
+      --border: rgba(255, 255, 255, 0.08);
+      --indigo: #6366f1;
+      --cyan: #06b6d4;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --emerald: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --font: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    header {
+      max-width: 900px;
+      margin: 0 auto 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .slide-progress {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .slide-stage {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .slide-canvas {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+    .slide-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .slide-body {
+      flex: 1;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .grid-box {
+      background: var(--card-surface);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 1rem;
+    }
+    .grid-box h5 {
+      font-size: 0.9rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .grid-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    /* Notes Panel */
+    .notes-drawer {
+      max-width: 900px;
+      margin: 1rem auto 0;
+      width: 100%;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px dashed rgba(99, 102, 241, 0.3);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+    .notes-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .notes-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .speech-time {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .speech-script {
+      font-size: 0.88rem;
+      color: #f1f5f9;
+      line-height: 1.5;
+      user-select: text;
+    }
+    /* Nav Controls */
+    .nav-controls {
+      max-width: 900px;
+      margin: 1.25rem auto 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .nav-btn {
+      flex: 1;
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--card-surface);
+      color: #fff;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .nav-btn:active { transform: scale(0.97); }
+    .nav-btn.primary {
+      background: linear-gradient(135deg, var(--indigo), #4f46e5);
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="./index.html" class="back-link">← Kembali ke Roadmap</a>
+    <div class="slide-progress" id="slideProgress">Slide 1 / 5</div>
+  </header>
+
+  <main class="slide-stage">
+    <div class="slide-canvas" id="slideCanvas">
+      <!-- Dynamic slide content -->
+    </div>
+
+    <div class="notes-drawer">
+      <div class="notes-head">
+        <div class="notes-title">🎙️ Speech Transcript (Naskah Lisan)</div>
+        <div class="speech-time" id="speechTime">Time: 0:00 - 0:30</div>
+      </div>
+      <div class="speech-script" id="speechScript">
+        <!-- Dynamic transcript -->
+      </div>
+    </div>
+  </main>
+
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()">◀ Previous</button>
+    <button class="nav-btn primary" onclick="nextSlide()">Next Slide ▶</button>
+  </div>
+
+  <script>
+    const slides = [
+      {
+        tag: "Slide 1 • Title & Introduction",
+        time: "0:00 - 0:30",
+        title: "Bridging the Critical Divide: Master's Research & Strategic Impact",
+        body: `
+          <div style="margin-top: 1.5rem;">
+            <p style="font-size: 1.15rem; color: #a5b4fc; font-weight: 700; margin-bottom: 0.5rem;">
+              A Targeted Academic Proposal for Indonesia's Strategic Transformation
+            </p>
+            <p style="font-size: 0.9rem; color: #94a3b8;">
+              Candidate Focus: Technical Rigor • Global Methodology Transfer • 5-Year Return Contribution
+            </p>
+            <div style="display:inline-block; margin-top: 1.5rem; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); border-radius: 0.5rem; padding: 0.5rem 1rem; font-size: 0.85rem; color: #c7d2fe;">
+              Target Scholarship: LPDP / Chevening / AAS / Fulbright
+            </div>
+          </div>
+        `,
+        script: `"Distinguished interviewers, good morning. Today, I am proud to present my master's research proposal titled 'Bridging the Critical Divide.' As a prospective scholar, my primary mission is not merely to obtain an international credential, but to master cutting-edge global methodologies and adapt them directly to resolve one of Indonesia's most pressing development bottlenecks. Over the next three minutes, I will guide you through the national urgency of this problem, my proposed research approach, and my concrete 5-year return contribution."`
+      },
+      {
+        tag: "Slide 2 • The Problem & Urgency",
+        time: "0:30 - 1:15",
+        title: "01. The Urgency: Why Indonesia Needs This Research Now",
+        body: `
+          <div class="grid-3">
+            <div class="grid-box" style="border-color: rgba(245, 158, 11, 0.4);">
+              <div style="color: #f59e0b; font-size: 0.75rem; font-weight: 800;">THE DEFICIT</div>
+              <div style="font-size: 2.2rem; font-weight: 800; color: #fff;">68%</div>
+              <p>Technical and efficiency disparity in domestic infrastructure & policy execution.</p>
+            </div>
+            <div class="grid-box" style="border-color: rgba(99, 102, 241, 0.4);">
+              <div style="color: #818cf8; font-size: 0.75rem; font-weight: 800;">THE DOMESTIC GAP</div>
+              <h5>Lack of Infrastructure</h5>
+              <p>Limited laboratory equipment and lack of interdisciplinary modeling in Indonesian universities.</p>
+            </div>
+            <div class="grid-box" style="border-color: rgba(244, 63, 94, 0.4);">
+              <div style="color: #f43f5e; font-size: 0.75rem; font-weight: 800;">THE CONSEQUENCE</div>
+              <h5>Cost of Inaction</h5>
+              <p>Without intervention, Indonesia risks lagging behind regional peers in economic resilience by 2030.</p>
+            </div>
+          </div>
+        `,
+        script: `"To appreciate the significance of my research, we must examine the reality in Indonesia today. Currently, our sector faces a documented 68% deficit in technical efficiency. Why? Because domestic institutions currently lack the specialized lab infrastructure and interdisciplinary methodologies required to solve this at scale. If we maintain business as usual, our national development roadmap will be severely compromised. This is precisely why undertaking advanced study overseas is an urgent necessity, not a luxury."`
+      },
+      {
+        tag: "Slide 3 • The Proposed Solution",
+        time: "1:15 - 2:00",
+        title: "02. The Proposed Solution: 3 Strategic Research Pillars",
+        body: `
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.5rem;">
+            <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #6366f1; padding: 0.75rem 1rem; border-radius: 0 0.5rem 0.5rem 0;">
+              <strong style="color: #fff; font-size: 0.9rem;">Pillar 1: Advanced Curriculum</strong>
+              <p style="font-size: 0.8rem; color: #94a3b8;">Direct access to advanced modules in systems engineering and empirical modeling unavailable locally.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #06b6d4; padding: 0.75rem 1rem; border-radius: 0 0.5rem 0.5rem 0;">
+              <strong style="color: #fff; font-size: 0.9rem;">Pillar 2: World-Class Mentorship</strong>
+              <p style="font-size: 0.8rem; color: #94a3b8;">Conducting research under Professor [Target Faculty] whose lab pioneered scalable frameworks across developing countries.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; border-radius: 0 0.5rem 0.5rem 0;">
+              <strong style="color: #fff; font-size: 0.9rem;">Pillar 3: Indonesian Contextualization</strong>
+              <p style="font-size: 0.8rem; color: #94a3b8;">Calibrating all empirical thesis experiments against Indonesian field data to guarantee 100% feasibility upon return.</p>
+            </div>
+          </div>
+        `,
+        script: `"My proposed master's study is anchored upon three strategic pillars. First, the specialized coursework at my target institution will equip me with advanced analytical toolkits. Second, working under Professor [Faculty Name] will provide direct mentorship in tested global frameworks. Most critically, my research will not remain in the theoretical realm: I will calibrate all empirical experiments using Indonesian field datasets to guarantee that the solutions we engineer can be seamlessly deployed back home."`
+      },
+      {
+        tag: "Slide 4 • Return Roadmap",
+        time: "2:00 - 2:40",
+        title: "03. Return Contribution: 5-Year Action Plan",
+        body: `
+          <div class="grid-3">
+            <div class="grid-box">
+              <div style="color: #06b6d4; font-weight: 800; font-size: 0.85rem;">YEAR 1</div>
+              <h5>Repatriation & Pilot</h5>
+              <p>Return immediately to Indonesia, publish findings in accredited journals, and launch an initial regional pilot.</p>
+            </div>
+            <div class="grid-box">
+              <div style="color: #6366f1; font-weight: 800; font-size: 0.85rem;">YEAR 2 - 3</div>
+              <h5>Institutional Scaling</h5>
+              <p>Form public-private partnerships, establish collaborative exchange with overseas alma mater, and train local talent.</p>
+            </div>
+            <div class="grid-box">
+              <div style="color: #f59e0b; font-weight: 800; font-size: 0.85rem;">YEAR 4 - 5</div>
+              <h5>National Policy Reform</h5>
+              <p>Formulate policy recommendations for government ministries to scale the solution nationwide.</p>
+            </div>
+          </div>
+        `,
+        script: `"A scholarship is an investment, and the panel rightly demands a high return on that investment. My return roadmap is structured into three clear milestones. In Year 1, I will immediately return home and execute a regional pilot project based on my thesis. In Years 2 and 3, I will scale this pilot through institutional collaborations and academic partnerships with my overseas university. By Year 5, my goal is to translate these validated results into national policy reforms in coordination with relevant ministries."`
+      },
+      {
+        tag: "Slide 5 • Value Proposition & Close",
+        time: "2:40 - 3:00",
+        title: "04. Value Proposition: A Transformative Investment",
+        body: `
+          <div style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); border-radius: 1rem; padding: 1.5rem; text-align: center; margin-top: 1rem;">
+            <p style="font-size: 1.25rem; font-weight: 800; color: #fff; line-height: 1.4; margin-bottom: 1rem;">
+              "Funding this study is not merely sponsoring an individual degree—it is funding a catalyst for systemic transformation in Indonesia."
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: #a5b4fc;">
+              <span>✔ Proven Academic Grit</span>
+              <span>✔ Rigorous, Data-Driven Topic</span>
+              <span>✔ Absolute Dedication to Indonesia</span>
+            </div>
+          </div>
+        `,
+        script: `"To conclude, funding my master's education is not just supporting another student; it is investing in a strategic, long-term solution to a well-documented Indonesian challenge. I have the academic grit, the institutional clarity, and the unwavering dedication to return home and deliver measurable impact. Thank you very much for your time and consideration, and I look forward to your questions."`
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide() {
+      const s = slides[currentSlide];
+      document.getElementById('slideProgress').innerText = `Slide ${currentSlide + 1} / ${slides.length}`;
+      document.getElementById('speechTime').innerText = `Time: ${s.time}`;
+      document.getElementById('speechScript').innerText = s.script;
+
+      const canvas = document.getElementById('slideCanvas');
+      canvas.innerHTML = `
+        <div>
+          <div class="slide-tag">${s.tag}</div>
+          <h2 class="slide-title">${s.title}</h2>
+        </div>
+        <div class="slide-body">${s.body}</div>
+      `;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        renderSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        renderSlide();
+      }
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    renderSlide();
+  </script>
+</body>
+</html>
