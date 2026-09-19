@@ -1,4 +1,3 @@
-<!-- Synced with index.html: Visual Roadmap Speaking Beasiswa -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -582,18 +581,33 @@
       
       <div class="mission-card">
         <div class="mission-header">
-          <span class="mission-badge" id="misiCategory">Misi Storytelling</span>
+          <span class="mission-badge" id="misiCategory">Storytelling (STAR-L)</span>
           <span class="time-badge" id="misiTime">⏱️ Timer: 2.5 Menit</span>
         </div>
 
         <h3 class="mission-title" id="misiText">
-          "Ceritakan kegagalan terbesar dalam hidupmu dan apa pelajaran kepemimpinan yang kamu ambil?"
+          "Describe your greatest setback in your academic or professional journey, and what leadership lessons did you derive from it?"
         </h3>
+
+        <!-- Subtitle Terjemahan -->
+        <p id="misiTranslate" style="font-size: 0.8rem; color: #94a3b8; margin-top: -0.35rem; margin-bottom: 0.85rem; font-style: italic;">
+          (Artinya: Ceritakan kegagalan terbesarmu dalam studi/kerja dan pelajaran kepemimpinan yang kamu ambil.)
+        </p>
+
+        <!-- Contek Frasa Pembuka & Keywords -->
+        <div id="misiHelp" style="background: rgba(99, 102, 241, 0.1); border: 1px dashed rgba(99, 102, 241, 0.3); border-radius: 0.75rem; padding: 0.75rem 0.85rem; margin-bottom: 0.85rem; font-size: 0.8rem;">
+          <div style="color: #a5b4fc; margin-bottom: 0.25rem;">
+            <strong>💬 Recommended Opening:</strong> <span id="misiOpening">"To be completely candid, my biggest setback occurred when..."</span>
+          </div>
+          <div style="color: #cbd5e1; font-size: 0.75rem;">
+            <strong>🔑 Power Words:</strong> <span id="misiKeywords">resilience, pivot, constructive takeaway, perseverance</span>
+          </div>
+        </div>
 
         <div class="mission-steps">
           <div class="step-item">
             <span class="step-num">1</span>
-            <div><strong>Pikirkan Poin (30 Detik):</strong> Jangan tulis naskah! Cukup bayangkan urutan: Masalah -> Aksimu -> Pelajaran.</div>
+            <div><strong>Pikirkan Poin (30 Detik):</strong> Jangan tulis naskah! Cukup bayangkan urutan STAR-L: Problem -> Your Action -> Lesson.</div>
           </div>
           <div class="step-item">
             <span class="step-num">2</span>
@@ -601,11 +615,11 @@
           </div>
           <div class="step-item">
             <span class="step-num">3</span>
-            <div><strong>Bicara Bahasa Inggris:</strong> Jangan pedulikan salah grammar. Intinya jangan ada jeda hening lebih dari 3 detik!</div>
+            <div><strong>Bicara Bahasa Inggris:</strong> Mulai dengan Recommended Opening di atas. Jangan ada hening lebih dari 3 detik!</div>
           </div>
           <div class="step-item">
             <span class="step-num">4</span>
-            <div><strong>Dengarkan Sendiri:</strong> Cek di mana kamu sering nyangkut (*"uhh.. umm.."*), perbaiki di percobaan kedua.</div>
+            <div><strong>Dengarkan Sendiri:</strong> Cek di mana kamu sering nyangkut (*"uhh.. umm.."*), perbaiki di rekaman kedua.</div>
           </div>
         </div>
 
@@ -958,32 +972,70 @@
       {
         cat: "Scholarship Pitch",
         time: "⏱️ Timer: 2 Menit",
-        text: "Tell me about yourself and why you deserve this scholarship over hundreds of other applicants?",
-        steps: ["Sebutkan masalah spesifik di Indonesia", "Jelaskan keahlianmu saat ini", "Tutup dengan visi kontribusi konkret"]
-      },
+    const missions = [
       {
         cat: "Storytelling (STAR-L)",
         time: "⏱️ Timer: 2.5 Menit",
-        text: "Ceritakan kegagalan terbesar dalam studi atau pekerjaanmu dan pelajaran berharga yang kamu dapatkan.",
-        steps: ["Latar masalah singkat (20s)", "Langkah perbaikan yang kamu ambil (60s)", "Pelajaran kepemimpinannya (30s)"]
-      },
-      {
-        cat: "Academic Pitch (PREP)",
-        time: "⏱️ Timer: 3 Menit",
-        text: "Jelaskan isu paling mendesak di Indonesia dalam bidangmu dan bagaimana studimu di luar negeri akan menyelesaikannya!",
-        steps: ["P: Sebutkan isu utamanya", "R: Alasan kenapa belum teratasi", "E: Contoh studi kasus", "P: Rekomendasi solusimu"]
-      },
-      {
-        cat: "60s Impromptu",
-        time: "⏱️ Timer: 60 Detik",
-        text: "Apakah penerima beasiswa wajib langsung pulang ke Indonesia setelah lulus, atau boleh magang dulu di luar negeri?",
-        steps: ["Ambil sikap dalam 5 detik", "Berikan 2 argumen logis", "Tutup dengan kesimpulan tegas"]
+        text: "Describe your greatest setback in your academic or professional journey, and what leadership lessons did you derive from it?",
+        trans: "Ceritakan kegagalan terbesarmu dalam studi/pekerjaan dan pelajaran kepemimpinan yang kamu ambil.",
+        opening: "To be completely candid, my biggest setback occurred when...",
+        keywords: "resilience, unexpected bottleneck, pivot, constructive takeaway"
       },
       {
         cat: "Scholarship Pitch",
         time: "⏱️ Timer: 2 Menit",
-        text: "Why did you choose this specific university and country instead of staying in Indonesia?",
-        steps: ["Sebutkan nama lab/profesor spesifik", "Bandingkan kurikulumnya dengan Indonesia", "Jelaskan transfer ilmu saat pulang"]
+        text: "Tell me about yourself and why you deserve this master's scholarship over hundreds of other competitive applicants?",
+        trans: "Ceritakan tentang dirimu dan kenapa kamu yang paling layak menerima beasiswa ini dibanding ratusan pendaftar lain.",
+        opening: "I am a dedicated professional driven by a clear mission: to...",
+        keywords: "defining spark, competitive differentiator, dedication, long-term impact"
+      },
+      {
+        cat: "The Spark Story (STAR-L)",
+        time: "⏱️ Timer: 2.5 Menit",
+        text: "What was 'The Spark'—the defining turning point that made you passionate about your chosen field of study?",
+        trans: "Momen titik balik yang membuatmu pertama kali jatuh cinta dan berkomitmen pada bidang studimu saat ini.",
+        opening: "My commitment to this field was profoundly sparked when...",
+        keywords: "catalyst, pivotal moment, revelation, overarching vision"
+      },
+      {
+        cat: "Academic Pitch (PREP)",
+        time: "⏱️ Timer: 3 Menit",
+        text: "What is the most pressing challenge in Indonesia within your field, and how will your overseas study program resolve it?",
+        trans: "Isu paling mendesak di Indonesia dalam bidangmu dan bagaimana studimu di luar negeri akan menyelesaikannya.",
+        opening: "From my empirical observation, the single most critical bottleneck in Indonesia is...",
+        keywords: "root cause, systemic gap, novel methodology, scalable reform"
+      },
+      {
+        cat: "60s Impromptu",
+        time: "⏱️ Timer: 60 Detik",
+        text: "Should scholarship recipients be legally required to return home immediately, or should they gain global work experience first?",
+        trans: "Apakah penerima beasiswa wajib langsung pulang atau sebaiknya mencari pengalaman kerja global terlebih dahulu?",
+        opening: "I firmly advocate that scholarship awardees should...",
+        keywords: "brain circulation, immediate repatriation, global network, strategic leverage"
+      },
+      {
+        cat: "University Choice Pitch",
+        time: "⏱️ Timer: 2 Menit",
+        text: "Why did you choose this specific university and host country instead of continuing your studies in Indonesia?",
+        trans: "Kenapa memilih universitas & negara tujuan ini dibanding melanjutkan kuliah di dalam negeri?",
+        opening: "While Indonesian institutions are rapidly developing, this university uniquely offers...",
+        keywords: "distinguished faculty, specialized curriculum, research ecosystem, knowledge transfer"
+      },
+      {
+        cat: "Leadership & Conflict (EQ)",
+        time: "⏱️ Timer: 2.5 Menit",
+        text: "Describe a situation where you had a serious disagreement with a team member. How did you handle it?",
+        trans: "Ceritakan saat kamu berselisih paham tajam dengan rekan tim dan bagaimana caramu menyelesaikannya.",
+        opening: "In any collaborative endeavor, friction is inevitable. In my experience...",
+        keywords: "active listening, common ground, diplomatic de-escalation, mutual accountability"
+      },
+      {
+        cat: "Post-Study Contribution",
+        time: "⏱️ Timer: 2 Menit",
+        text: "What concrete contribution will you bring to Indonesia immediately and 5 years after completing your degree?",
+        trans: "Kontribusi konkret apa yang akan kamu bawa untuk Indonesia 1 tahun dan 5 tahun setelah lulus?",
+        opening: "My return roadmap is divided into two phases: immediate implementation and long-term scaling...",
+        keywords: "tangible output, institutional partnership, policy impact, sustainable development"
       }
     ];
 
@@ -996,6 +1048,9 @@
       document.getElementById('misiCategory').innerText = m.cat;
       document.getElementById('misiTime').innerText = m.time;
       document.getElementById('misiText').innerText = `"${m.text}"`;
+      document.getElementById('misiTranslate').innerText = `(Artinya: ${m.trans})`;
+      document.getElementById('misiOpening').innerText = `"${m.opening}"`;
+      document.getElementById('misiKeywords').innerText = m.keywords;
     }
 
     function showView(viewId, btn) {
