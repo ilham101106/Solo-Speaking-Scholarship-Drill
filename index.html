@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#07090e" />
+  <meta name="theme-color" content="#0b0f19" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>ScholarSpeak — Solo Speaking & Scholarship Studio</title>
+  <title>ScholarRoadmap — Panduan Visual Speaking Beasiswa</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-base: #07090e;
-      --bg-surface: #101524;
-      --bg-elevated: #182036;
-      --bg-card: rgba(22, 30, 50, 0.7);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(99, 102, 241, 0.35);
+      --bg: #07090e;
+      --surface-1: #0f1422;
+      --surface-2: #171f34;
+      --surface-card: rgba(22, 30, 52, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(99, 102, 241, 0.4);
       
-      --accent: #6366f1;
-      --accent-light: #818cf8;
-      --accent-cyan: #06b6d4;
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      --accent-emerald: #10b981;
+      --indigo: #6366f1;
+      --indigo-glow: rgba(99, 102, 241, 0.25);
+      --cyan: #06b6d4;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --violet: #8b5cf6;
       
-      --text-1: #f8fafc;
-      --text-2: #94a3b8;
-      --text-3: #64748b;
+      --text-1: #ffffff;
+      --text-2: #cbd5e1;
+      --text-3: #94a3b8;
+      --text-dim: #64748b;
       
-      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -46,7 +48,7 @@
     }
 
     body {
-      background-color: var(--bg-base);
+      background-color: var(--bg);
       color: var(--text-1);
       font-family: var(--font);
       min-height: 100vh;
@@ -54,466 +56,481 @@
       padding-top: max(var(--safe-top), 0.75rem);
       padding-bottom: calc(75px + max(var(--safe-bottom), 1rem));
       background-image: 
-        radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 100%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
       background-attachment: fixed;
-      user-select: none;
     }
 
-    /* Top App Bar */
-    .app-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1.25rem 0.5rem;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .brand-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, var(--accent), #4f46e5);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
-    }
-
-    .brand-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .status-badge {
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: var(--accent-light);
-      padding: 0.25rem 0.65rem;
-      border-radius: 9999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    /* Screen Wrapper */
-    .screen-container {
-      max-width: 680px;
+    /* Container */
+    .app-shell {
+      max-width: 650px;
       margin: 0 auto;
       padding: 0 1rem;
     }
 
-    /* Category Pill Switcher (Mobile Scroll) */
-    .cat-scroller {
-      display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      padding: 0.6rem 0.25rem 0.85rem;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .cat-scroller::-webkit-scrollbar {
-      display: none;
+    /* Header */
+    header {
+      padding: 1rem 0 1.25rem;
+      text-align: center;
     }
 
-    .cat-pill {
-      flex: 0 0 auto;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-2);
-      padding: 0.55rem 0.95rem;
-      border-radius: 9999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
+    .badge-hero {
+      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      color: var(--text-2);
+      font-size: 0.88rem;
+      line-height: 1.4;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Voice Memo Banner (Simplicity Reminder) */
+    .memo-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.08));
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      margin: 0.85rem 0 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .memo-banner-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .memo-banner h4 {
+      font-size: 0.88rem;
+      color: #34d399;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .memo-banner p {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+
+    /* Screen Nav Tabs */
+    .view-switcher {
+      display: flex;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      padding: 0.3rem;
+      border-radius: 0.85rem;
+      margin-bottom: 1.25rem;
+      gap: 0.3rem;
+      position: sticky;
+      top: max(var(--safe-top), 0.5rem);
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .switch-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-3);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.65rem 0.5rem;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      font-family: var(--font);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .cat-pill:active {
-      transform: scale(0.96);
-    }
-    .cat-pill.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent-light);
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+
+    .switch-btn.active {
+      background: var(--indigo);
+      color: #ffffff;
+      box-shadow: 0 4px 12px var(--indigo-glow);
     }
 
-    /* Prompt Card */
-    .card {
-      background: var(--bg-card);
+    /* SECTION 1: DAILY MISSION GENERATOR (CARD) */
+    .mission-card {
+      background: var(--surface-card);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-highlight);
       border-radius: 1.25rem;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 1.35rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card-top {
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--indigo), var(--cyan), var(--amber));
+    }
+
+    .mission-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 0.75rem;
     }
 
-    .card-type {
+    .mission-badge {
       font-size: 0.72rem;
-      text-transform: uppercase;
       font-weight: 800;
-      color: var(--accent-cyan);
-      letter-spacing: 0.06em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .card-target {
+    .time-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--accent-amber);
-      background: rgba(245, 158, 11, 0.12);
-      padding: 0.15rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
     }
 
-    .prompt-text {
-      font-size: 1.12rem;
-      font-weight: 700;
-      line-height: 1.45;
-      color: var(--text-1);
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
+    .mission-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
       user-select: text;
     }
 
-    /* Collapsible Tip */
-    .tip-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed var(--border-subtle);
-      border-radius: 0.75rem;
-      padding: 0.75rem 0.9rem;
-      font-size: 0.82rem;
-      color: #cbd5e1;
-      line-height: 1.4;
+    .mission-steps {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 0.85rem;
       margin-bottom: 1rem;
     }
 
-    /* Actions Row */
-    .action-row {
+    .step-item {
       display: flex;
+      align-items: flex-start;
       gap: 0.6rem;
+      margin-bottom: 0.55rem;
+      font-size: 0.82rem;
+      color: var(--text-2);
+    }
+    .step-item:last-child {
+      margin-bottom: 0;
     }
 
-    .btn {
-      flex: 1;
-      display: inline-flex;
+    .step-num {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      padding: 0.75rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--indigo), #4f46e5);
+      color: white;
+      border: none;
+      padding: 0.85rem 1rem;
       border-radius: 0.85rem;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 700;
       font-family: var(--font);
       cursor: pointer;
-      border: none;
-      transition: all 0.15s ease;
-      min-height: 46px;
-    }
-    .btn:active {
-      transform: scale(0.97);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-2);
-      flex: 0 0 46px;
-      padding: 0;
-    }
-
-    /* Framework Accordion */
-    .framework-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.65rem 0.25rem 0.35rem;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-2);
-    }
-
-    .framework-steps {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    @media (min-width: 450px) {
-      .framework-steps {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .step-badge {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      border-radius: 0.65rem;
-      padding: 0.55rem 0.7rem;
-    }
-    .step-badge strong {
-      display: block;
-      color: var(--accent-light);
-      font-size: 0.78rem;
-      margin-bottom: 0.15rem;
-    }
-    .step-badge span {
-      display: block;
-      color: var(--text-3);
-      font-size: 0.7rem;
-      line-height: 1.25;
-    }
-
-    /* Studio Card: Timer & Record */
-    .studio-card {
-      background: linear-gradient(180deg, #131b2e 0%, #0d1322 100%);
-      border: 1px solid var(--border-accent);
-      border-radius: 1.25rem;
-      padding: 1.5rem 1.25rem 1.25rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
-    }
-
-    .timer-readout {
-      font-family: var(--font-mono);
-      font-size: 3.25rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 2px;
-      line-height: 1;
-      margin-bottom: 1.25rem;
-      text-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
-    }
-
-    .record-area {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px var(--indigo-glow);
+      transition: transform 0.15s ease;
+    }
+    .action-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* SECTION 2: 4-STAGE ROADMAP (VISUAL TIMELINE) */
+    .stage-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .stage-card:hover {
+      border-color: var(--border-highlight);
+    }
+
+    .stage-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .stage-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .s1-icon { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .s2-icon { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .s3-icon { background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); }
+    .s4-icon { background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.3); }
+
+    .stage-meta h3 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stage-meta span {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      font-weight: 600;
+    }
+
+    .stage-goal {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--indigo);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-size: 0.8rem;
+      color: var(--text-2);
       margin-bottom: 0.85rem;
     }
 
-    .btn-mic {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-      border: 4px solid rgba(239, 68, 68, 0.25);
-      color: white;
-      font-size: 1.75rem;
+    .stage-methods {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .method-pill {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.7rem 0.85rem;
+    }
+
+    .method-pill h5 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .btn-mic:active {
-      transform: scale(0.92);
-    }
-    .btn-mic.recording {
-      animation: pulseRecord 1.4s infinite;
-      border-radius: 18px;
-      width: 62px;
-      height: 62px;
-      background: #dc2626;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
     }
 
-    @keyframes pulseRecord {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-
-    .btn-subtle {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-2);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.5rem 0.85rem;
-      border-radius: 0.6rem;
-      cursor: pointer;
-    }
-
-    .studio-hint {
-      font-size: 0.78rem;
+    .method-pill p {
+      font-size: 0.76rem;
       color: var(--text-3);
       line-height: 1.4;
     }
 
-    /* Audio Playback */
-    .audio-box {
-      display: none;
-      background: rgba(16, 185, 129, 0.08);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      border-radius: 0.85rem;
-      padding: 0.85rem;
-      margin-top: 1rem;
-      text-align: left;
-    }
-    .audio-box p {
-      font-size: 0.78rem;
-      color: var(--accent-emerald);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    audio {
-      width: 100%;
-      height: 38px;
-      border-radius: 6px;
+    /* SECTION 3: RUMUS SAKTI (STAR-L & PREP) */
+    .formula-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
     }
 
-    /* Tab 2: Solo PPT Blueprint */
-    .blueprint-card {
-      display: flex;
-      gap: 0.85rem;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid var(--border-subtle);
-      border-radius: 0.85rem;
-      padding: 0.9rem;
-      margin-bottom: 0.75rem;
-    }
-    .badge-num {
-      background: var(--accent);
-      color: white;
-      font-size: 0.72rem;
+    .formula-title {
+      font-size: 1.05rem;
       font-weight: 800;
-      padding: 0.25rem 0.55rem;
-      border-radius: 0.4rem;
-      height: fit-content;
-    }
-    .blueprint-info h4 {
-      font-size: 0.9rem;
       color: #fff;
-      margin-bottom: 0.2rem;
-    }
-    .blueprint-info p {
-      font-size: 0.78rem;
-      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: 0.4rem;
     }
-    .quote-tag {
-      display: inline-block;
-      background: rgba(99, 102, 241, 0.12);
-      color: #a5b4fc;
-      border-radius: 0.35rem;
-      padding: 0.2rem 0.55rem;
-      font-size: 0.74rem;
-      font-family: var(--font-mono);
-      cursor: pointer;
-    }
-    .quote-tag:active {
-      background: rgba(99, 102, 241, 0.25);
-    }
 
-    /* Tab 3: Roadmap Checklist */
-    .timeline-node {
-      border-left: 2px solid var(--accent);
-      margin-left: 0.5rem;
-      padding-left: 1.25rem;
-      padding-bottom: 1.5rem;
-      position: relative;
-    }
-    .timeline-node::before {
-      content: '';
-      position: absolute;
-      left: -6px;
-      top: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-light);
-      box-shadow: 0 0 10px var(--accent);
-    }
-    .timeline-title {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.25rem;
-    }
-    .timeline-desc {
+    .formula-desc {
       font-size: 0.8rem;
       color: var(--text-2);
-      line-height: 1.5;
+      margin-bottom: 1rem;
     }
 
-    /* iOS Bottom Tab Bar */
-    .tab-bar {
+    .starl-grid {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .starl-row {
+      display: flex;
+      gap: 0.65rem;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.65rem 0.8rem;
+      align-items: center;
+    }
+
+    .letter-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--indigo);
+      color: white;
+      font-weight: 800;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .starl-content h6 {
+      font-size: 0.82rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .starl-content p {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    /* SECTION 4: THE BIG 8 BEASISWA */
+    .qa-accordion {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      margin-bottom: 0.65rem;
+      overflow: hidden;
+    }
+
+    .qa-trigger {
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .qa-trigger h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .qa-body {
+      display: none;
+      padding: 0 1rem 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+      border-top: 1px dashed var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .qa-body strong {
+      color: var(--cyan);
+    }
+
+    /* iOS Bottom Sticky Tabs */
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(11, 15, 25, 0.92);
+      background: rgba(7, 9, 14, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-around;
-      padding-top: 0.45rem;
-      padding-bottom: max(var(--safe-bottom), 0.5rem);
+      padding-top: 0.4rem;
+      padding-bottom: max(var(--safe-bottom), 0.4rem);
       z-index: 100;
     }
 
-    .tab-item {
+    .nav-btn {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.2rem;
       background: transparent;
       border: none;
-      color: var(--text-3);
-      cursor: pointer;
-      padding: 0.2rem 0;
-    }
-    .tab-item.active {
-      color: var(--accent-light);
-    }
-    .tab-icon {
-      font-size: 1.25rem;
-    }
-    .tab-label {
+      color: var(--text-dim);
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      font-family: var(--font);
+      cursor: pointer;
+      padding: 0.25rem 0;
     }
 
-    /* View Switcher */
-    .view-section {
+    .nav-btn.active {
+      color: var(--indigo);
+    }
+
+    .nav-icon {
+      font-size: 1.25rem;
+    }
+
+    /* Views */
+    .view-panel {
       display: none;
     }
-    .view-section.active {
+    .view-panel.active {
       display: block;
       animation: fadeIn 0.2s ease-out;
     }
@@ -525,497 +542,486 @@
 </head>
 <body>
 
-  <!-- Top App Header -->
-  <header class="app-bar">
-    <div class="brand">
-      <div class="brand-icon">🎙️</div>
-      <div class="brand-title">ScholarSpeak</div>
+  <div class="app-shell">
+    
+    <!-- Hero Title -->
+    <header>
+      <div class="badge-hero">🎓 Study Abroad Speaking Quest</div>
+      <h1>Roadmap Speaking Beasiswa</h1>
+      <p class="tagline">Panduan visual step-by-step menembus wawancara LPDP, Chevening, AAS, dan presentasi kuliah luar negeri.</p>
+    </header>
+
+    <!-- Simplicity Note: Native Voice Memos -->
+    <div class="memo-banner">
+      <div class="memo-banner-icon">🎙️</div>
+      <div>
+        <h4>Latihan Cukup Pakai Voice Memos HP</h4>
+        <p>Gak usah ribet rekam di web! Buka roadmap ini untuk ambil <strong>misi & rumusnya</strong>, lalu langsung rekam suaramu di <strong>Voice Memos / Perekam Suara bawaan HP-mu</strong>.</p>
+      </div>
     </div>
-    <div class="status-badge" id="categoryBadge">Scholarship Qs</div>
-  </header>
 
-  <!-- MAIN APP SCREENS -->
-  <main class="screen-container">
+    <!-- View Switcher -->
+    <div class="view-switcher">
+      <button class="switch-btn active" onclick="showView('misi', this)">
+        ⚡ Misi Harian
+      </button>
+      <button class="switch-btn" onclick="showView('roadmap', this)">
+        🗺️ 4 Fase
+      </button>
+      <button class="switch-btn" onclick="showView('rumus', this)">
+        🧩 Rumus Sakti
+      </button>
+      <button class="switch-btn" onclick="showView('big8', this)">
+        🎯 The Big 8
+      </button>
+    </div>
 
-    <!-- VIEW 1: PRACTICE DRILL (MAIN) -->
-    <section id="view-drill" class="view-section active">
+    <!-- VIEW 1: GENERATOR MISI HARIAN -->
+    <section id="view-misi" class="view-panel active">
       
-      <!-- Category Scroller -->
-      <div class="cat-scroller">
-        <button class="cat-pill active" onclick="setCategory('scholarship', this)">
-          🎓 Scholarship Qs
-        </button>
-        <button class="cat-pill" onclick="setCategory('storytelling', this)">
-          📖 Storytelling (STAR-L)
-        </button>
-        <button class="cat-pill" onclick="setCategory('ppt', this)">
-          📊 Solo PPT Pitch
-        </button>
-        <button class="cat-pill" onclick="setCategory('impromptu', this)">
-          ⚡ 60s Impromptu
-        </button>
-      </div>
-
-      <!-- Active Prompt Card -->
-      <div class="card">
-        <div class="card-top">
-          <span class="card-type" id="promptType">LPDP / Chevening / AAS Drill</span>
-          <span class="card-target" id="promptTarget">Target: 2 Mins</span>
+      <div class="mission-card">
+        <div class="mission-header">
+          <span class="mission-badge" id="misiCategory">Misi Storytelling</span>
+          <span class="time-badge" id="misiTime">⏱️ Timer: 2.5 Menit</span>
         </div>
 
-        <div class="prompt-text" id="promptText">
-          "Tell me about yourself and why you deserve this master's scholarship over other competitive applicants?"
-        </div>
-
-        <div class="tip-box" id="promptTip">
-          💡 <strong>Interviewer Strategy:</strong> Don't recite your CV. Share your defining spark, your core motivation, and the concrete impact you'll bring upon return.
-        </div>
-
-        <div class="action-row">
-          <button class="btn btn-primary" onclick="nextPrompt()">
-            🎲 Roll Next Question
-          </button>
-          <button class="btn btn-secondary" onclick="copyPrompt()" title="Copy Prompt">
-            📋
-          </button>
-        </div>
-
-        <!-- Framework Reference -->
-        <div style="margin-top: 1rem; border-top: 1px dashed var(--border-subtle); padding-top: 0.75rem;">
-          <div class="framework-toggle" onclick="toggleFramework()">
-            <span>⚡ Structure Guide (<span id="fwName">Direct Answer</span>)</span>
-            <span id="fwArrow" style="font-size: 0.7rem;">▼</span>
-          </div>
-          <div class="framework-steps" id="frameworkSteps">
-            <!-- Dynamic pills -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Voice Studio & Timer Card -->
-      <div class="studio-card">
-        <div class="timer-readout" id="timer">00:00</div>
-        
-        <div class="record-area">
-          <button class="btn-subtle" onclick="resetTimer()">Reset</button>
-          <button class="btn-mic" id="recordBtn" onclick="toggleRecord()" title="Start Recording">
-            ⏺
-          </button>
-          <button class="btn-subtle" onclick="shareTake()" id="shareBtn" style="visibility:hidden;">Share</button>
-        </div>
-
-        <p class="studio-hint" id="recordHint">
-          Tap tombol merah untuk mulai merekam. Bicara tanpa jeda lebih dari 3 detik!
-        </p>
-
-        <div class="audio-box" id="audioBox">
-          <p>✅ Rekaman Siap! Dengarkan suaramu:</p>
-          <audio id="audioPlayback" controls playsinline></audio>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- VIEW 2: SOLO PPT GUIDE -->
-    <section id="view-ppt" class="view-section">
-      <div class="card" style="margin-top: 0.5rem;">
-        <h3 style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
-          📊 3-Slide Ignite Presentation Drill
+        <h3 class="mission-title" id="misiText">
+          "Ceritakan kegagalan terbesar dalam hidupmu dan apa pelajaran kepemimpinan yang kamu ambil?"
         </h3>
-        <p style="font-size: 0.8rem; color: var(--text-2); margin-bottom: 1rem;">
-          Latihan berbicara akademis solo selama 3-4 menit seolah-olah sedang mempresentasikan proposal tesis di depan profesor kampus luar negeri.
-        </p>
 
-        <div class="blueprint-card">
-          <div class="badge-num">Slide 1</div>
-          <div class="blueprint-info">
-            <h4>The Hook & The Problem</h4>
-            <p>Buka dengan 1 data mengejutkan atau isu krusial di Indonesia.</p>
-            <span class="quote-tag" onclick="copyPhrase(this)">"Today, I want to shed light on a critical paradox in..."</span>
+        <div class="mission-steps">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <div><strong>Pikirkan Poin (30 Detik):</strong> Jangan tulis naskah! Cukup bayangkan urutan: Masalah -> Aksimu -> Pelajaran.</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <div><strong>Buka Voice Memos HP:</strong> Set stopwatch atau rekam langsung selama durasi di atas.</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <div><strong>Bicara Bahasa Inggris:</strong> Jangan pedulikan salah grammar. Intinya jangan ada jeda hening lebih dari 3 detik!</div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <div><strong>Dengarkan Sendiri:</strong> Cek di mana kamu sering nyangkut (*"uhh.. umm.."*), perbaiki di percobaan kedua.</div>
           </div>
         </div>
 
-        <div class="blueprint-card">
-          <div class="badge-num">Slide 2</div>
-          <div class="blueprint-info">
-            <h4>Core Analysis & Methodology</h4>
-            <p>Jelaskan pendekatan riset atau intervensi kebijakan yang kamu usulkan.</p>
-            <span class="quote-tag" onclick="copyPhrase(this)">"The cornerstone of my proposed study lies in..."</span>
-          </div>
-        </div>
+        <button class="action-btn" onclick="generateMission()">
+          🎲 Ganti Misi Latihan Baru
+        </button>
+      </div>
 
-        <div class="blueprint-card">
-          <div class="badge-num">Slide 3</div>
-          <div class="blueprint-info">
-            <h4>Return Impact & Contribution</h4>
-            <p>Bagaimana studi ini secara langsung berdampak bagi Indonesia saat kamu lulus?</p>
-            <span class="quote-tag" onclick="copyPhrase(this)">"Ultimately, by adapting this framework upon my return..."</span>
-          </div>
-        </div>
-
-        <div style="background: rgba(99, 102, 241, 0.1); border-radius: 0.75rem; padding: 0.85rem; margin-top: 1rem;">
-          <h5 style="font-size: 0.82rem; color: var(--accent-light); margin-bottom: 0.3rem;">💡 Solo PPT Practice Tip:</h5>
-          <p style="font-size: 0.78rem; color: var(--text-2);">
-            Buat 3 slide sederhana di Canva/PPT di laptopmu, lalu buka web ini di iPhone sebagai timer dan voice recorder!
-          </p>
+      <!-- Rutinitas Cepat 30 Menit -->
+      <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.15rem;">
+        <h4 style="font-size: 0.9rem; color: #fff; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;">
+          ⚡ Menu Harian (Cukup 30 Menit/Hari):
+        </h4>
+        <div style="font-size: 0.8rem; color: var(--text-2); display: flex; flex-direction: column; gap: 0.45rem;">
+          <div>🎧 <strong>10 Menit:</strong> Shadowing 1 video YouTube (TED-Ed/Vox) buat lenturin lidah.</div>
+          <div>🎙️ <strong>15 Menit:</strong> Latihan 1 Misi di atas lalu rekam di Voice Memos HP.</div>
+          <div>📝 <strong>5 Menit:</strong> Dengarkan ulang rekaman & catat 2 kata transisi baru.</div>
         </div>
       </div>
+
     </section>
 
-    <!-- VIEW 3: ROADMAP & CHECKLIST -->
-    <section id="view-roadmap" class="view-section">
-      <div class="card" style="margin-top: 0.5rem;">
-        <h3 style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem;">
-          🗺️ 6-Month Speaking Master Roadmap
-        </h3>
-        <p style="font-size: 0.8rem; color: var(--text-2); margin-bottom: 1.25rem;">
-          Rencana bertahap untuk menembus wawancara beasiswa luar negeri & kuliah internasional.
-        </p>
-
-        <div class="timeline-node">
-          <div class="timeline-title">Fase 1: Mencairkan Lidah (Bulan 1)</div>
-          <div class="timeline-desc">
-            Shadowing 15 menit/hari (TED-Ed/Vox) + Rekaman monolog bebas 3 menit. Matikan kebiasaan menerjemahkan dari bahasa Indonesia.
+    <!-- VIEW 2: 4 FASE ROADMAP -->
+    <section id="view-roadmap" class="view-panel">
+      
+      <!-- Fase 1 -->
+      <div class="stage-card">
+        <div class="stage-head">
+          <div class="stage-icon s1-icon">🟢</div>
+          <div class="stage-meta">
+            <h3>Fase 1: Mencairkan Lidah</h3>
+            <span>Bulan 1 • Target: Bicara Tanpa Mikir Terjemahan</span>
           </div>
         </div>
-
-        <div class="timeline-node">
-          <div class="timeline-title">Fase 2: The Art of Storytelling (Bulan 2)</div>
-          <div class="timeline-desc">
-            Kuasai metode <strong>STAR-L</strong> untuk bercerita tentang: The Spark, Kegagalan Terbesar, Kepemimpinan di bawah tekanan, & Kontribusi Sosial.
-          </div>
+        <div class="stage-goal">
+          <strong>Goal:</strong> Mematikan kebiasaan mikir bahasa Indonesia di kepala baru di-translate kata per kata.
         </div>
-
-        <div class="timeline-node">
-          <div class="timeline-title">Fase 3: Solo PPT & Academic Defense (Bulan 3-4)</div>
-          <div class="timeline-desc">
-            Latihan 3-Slide Ignite pitch & metode <strong>PREP</strong> (Point, Reason, Example, Point). Biasakan menjelaskan konsep ilmiah secara terstruktur.
+        <div class="stage-methods">
+          <div class="method-pill">
+            <h5>🗣️ Shadowing Method (15 Menit)</h5>
+            <p>Dengarkan 1 kalimat video TED-Ed, lalu tiru intonasi dan nadanya persis secara bersamaan. Latih otot rahang & bibir.</p>
           </div>
-        </div>
-
-        <div class="timeline-node" style="border-left: none; padding-bottom: 0;">
-          <div class="timeline-title">Fase 4: Mock Interview & Defense (Bulan 5-6)</div>
-          <div class="timeline-desc">
-            Kuasai The Big 8 Scholarship Questions, teknik Buying Time saat pertanyaan sulit, dan latihan 60-Second Impromptu Speaking.
+          <div class="method-pill">
+            <h5>📱 Free Voice Memo (2-3 Menit)</h5>
+            <p>Rekam suara di HP menceritakan apa saja yang terjadi hari ini tanpa jeda hening lebih dari 3 detik.</p>
           </div>
-        </div>
-
-        <div style="margin-top: 1.5rem; border-top: 1px dashed var(--border-subtle); padding-top: 1rem;">
-          <h4 style="font-size: 0.88rem; color: #fff; margin-bottom: 0.6rem;">📋 Daily Drill Checklist (30 Mins):</h4>
-          <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.8rem; color:var(--text-2); margin-bottom:0.5rem; cursor:pointer;">
-            <input type="checkbox" style="accent-color: var(--accent); width:16px; height:16px;"> 10 Menit: Shadowing 1 video pendek
-          </label>
-          <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.8rem; color:var(--text-2); margin-bottom:0.5rem; cursor:pointer;">
-            <input type="checkbox" style="accent-color: var(--accent); width:16px; height:16px;"> 15 Menit: Latihan 1 Prompt & Rekam di web ini
-          </label>
-          <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.8rem; color:var(--text-2); cursor:pointer;">
-            <input type="checkbox" style="accent-color: var(--accent); width:16px; height:16px;"> 5 Menit: Evaluasi jeda & catat 2 frasa transisi baru
-          </label>
         </div>
       </div>
+
+      <!-- Fase 2 -->
+      <div class="stage-card">
+        <div class="stage-head">
+          <div class="stage-icon s2-icon">🟡</div>
+          <div class="stage-meta">
+            <h3>Fase 2: The Art of Storytelling</h3>
+            <span>Bulan 2 • Target: Menguasai Narasi Beasiswa</span>
+          </div>
+        </div>
+        <div class="stage-goal">
+          <strong>Goal:</strong> Menceritakan pengalaman organisasi, kerja, & kegagalan dengan struktur memukau (**STAR-L**).
+        </div>
+        <div class="stage-methods">
+          <div class="method-pill">
+            <h5>📖 4 Pilar Cerita Beasiswa</h5>
+            <p>Latih 4 cerita wajib: The Spark (alasan pilih jurusan), The Failure (kegagalan terbesar), Leadership under pressure, & Social Impact.</p>
+          </div>
+          <div class="method-pill">
+            <h5>🔄 2-Take Rule</h5>
+            <p>Take 1 rekaman spontan -> dengarkan & rapikan alurnya -> Take 2 rekaman final dengan kata kerja aksi yang kuat.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 3 -->
+      <div class="stage-card">
+        <div class="stage-head">
+          <div class="stage-icon s3-icon">🟣</div>
+          <div class="stage-meta">
+            <h3>Fase 3: Solo PPT & Academic Pitch</h3>
+            <span>Bulan 3-4 • Target: Presentasi Ilmiah Kelas Dunia</span>
+          </div>
+        </div>
+        <div class="stage-goal">
+          <strong>Goal:</strong> Mampu membedah topik riset atau isu nasional secara kritis layaknya mahasiswa di luar negeri.
+        </div>
+        <div class="stage-methods">
+          <div class="method-pill">
+            <h5>📊 3-Slide Ignite Presentation</h5>
+            <p>Buat 3 slide sederhana di laptop: Slide 1 (Masalah/Data), Slide 2 (Metodologi/Solusi), Slide 3 (Dampak bagi Indonesia).</p>
+          </div>
+          <div class="method-pill">
+            <h5>📐 Rumus Argumentasi PREP</h5>
+            <p>Point (Pernyataan) -> Reason (Alasan mekanisme) -> Example (Contoh bukti/data) -> Point (Kesimpulan penutup).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 4 -->
+      <div class="stage-card">
+        <div class="stage-head">
+          <div class="stage-icon s4-icon">🔴</div>
+          <div class="stage-meta">
+            <h3>Fase 4: Mock Interview & Defense</h3>
+            <span>Bulan 5-6 • Target: Lolos Wawancara Final Beasiswa</span>
+          </div>
+        </div>
+        <div class="stage-goal">
+          <strong>Goal:</strong> Siap menghadapi pertanyaan jebakan reviewer beasiswa dengan tenang dan meyakinkan.
+        </div>
+        <div class="stage-methods">
+          <div class="method-pill">
+            <h5>🎯 The Big 8 Scholarship Drill</h5>
+            <p>Kuasai 8 pertanyaan wajib beasiswa (alasan kampus, kontribusi nyata, penanganan konflik tim, rencana darurat).</p>
+          </div>
+          <div class="method-pill">
+            <h5>⏳ 60-Second Impromptu Speaking</h5>
+            <p>Ambil isu acak, beri waktu mikir 15 detik, langsung bicara tegas 60 detik tanpa ragu.</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
-  </main>
+    <!-- VIEW 3: RUMUS SAKTI (STAR-L & PREP) -->
+    <section id="view-rumus" class="view-panel">
+      
+      <!-- STAR-L -->
+      <div class="formula-card">
+        <div class="formula-title">
+          <span>⭐ Rumus 1: STAR-L Method</span>
+        </div>
+        <p class="formula-desc">Gunakan ini setiap kali ditanya pengalaman pribadi, kepemimpinan tim, atau cara menyelesaikan masalah.</p>
 
-  <!-- iOS Bottom Tab Bar -->
-  <nav class="tab-bar">
-    <button class="tab-item active" onclick="switchView('drill', this)">
-      <span class="tab-icon">🎙️</span>
-      <span class="tab-label">Practice</span>
+        <div class="starl-grid">
+          <div class="starl-row">
+            <div class="letter-badge">S</div>
+            <div class="starl-content">
+              <h6>Situation (15-20 Detik)</h6>
+              <p>Ceritakan latar belakang masalah & seberapa genting situasinya.</p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge">T</div>
+            <div class="starl-content">
+              <h6>Task (15 Detik)</h6>
+              <p>Tanggung jawab atau target spesifik yang harus kamu capai.</p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--amber);">A</div>
+            <div class="starl-content">
+              <h6>Action (60 Detik — PALING PENTING!)</h6>
+              <p>Langkah konkret yang KAMU ambil (gunakan kata "I spearheaded", "I negotiated").</p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge">R</div>
+            <div class="starl-content">
+              <h6>Result (30 Detik)</h6>
+              <p>Hasil nyata atau angka terukur dari langkahmu.</p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--emerald);">L</div>
+            <div class="starl-content">
+              <h6>Learning (20 Detik)</h6>
+              <p>Pelajaran hidup/kepemimpinan yang membuatmu siap kuliah di luar negeri.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PREP -->
+      <div class="formula-card">
+        <div class="formula-title">
+          <span>📐 Rumus 2: PREP Method</span>
+        </div>
+        <p class="formula-desc">Gunakan ini setiap kali mempresentasikan slide PPT, menjawab pertanyaan opini, atau membela proposal riset.</p>
+
+        <div class="starl-grid">
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--cyan);">P</div>
+            <div class="starl-content">
+              <h6>Point (10 Detik)</h6>
+              <p>Langsung sebutkan intisari pendapatmu: <em>"I strongly believe that..."</em></p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--cyan);">R</div>
+            <div class="starl-content">
+              <h6>Reason (30-45 Detik)</h6>
+              <p>Alasan ilmiah atau mekanisme logis di baliknya: <em>"The underlying mechanism is..."</em></p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--cyan);">E</div>
+            <div class="starl-content">
+              <h6>Example (45-60 Detik)</h6>
+              <p>Contoh nyata, data kasus, atau fakta di lapangan: <em>"For instance, in rural Indonesia..."</em></p>
+            </div>
+          </div>
+          <div class="starl-row">
+            <div class="letter-badge" style="background: var(--cyan);">P</div>
+            <div class="starl-content">
+              <h6>Point Restated (15 Detik)</h6>
+              <p>Tutup dengan kesimpulan yang mengunci: <em>"Therefore, investing in this solution is imperative."</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cheat Sheet Frasa Buying Time -->
+      <div class="formula-card">
+        <div class="formula-title">
+          <span>⏱️ Frasa Sakti "Buying Time"</span>
+        </div>
+        <p class="formula-desc">Kalau interviewer nanya pertanyaan susah, JANGAN bengong diam. Gunakan frasa ini sambil otakmu berpikir:</p>
+        <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.8rem; color:var(--text-2);">
+          <div style="background:rgba(255,255,255,0.03); padding:0.5rem 0.75rem; border-radius:0.5rem;">
+            💬 <em>"That is a profound question. Let me break my response down into two key aspects..."</em>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); padding:0.5rem 0.75rem; border-radius:0.5rem;">
+            💬 <em>"Looking at this issue from a policy perspective, there are two angles to consider..."</em>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 4: THE BIG 8 BEASISWA -->
+    <section id="view-big8" class="view-panel">
+      
+      <div style="margin-bottom: 0.75rem;">
+        <h3 style="font-size: 1rem; font-weight: 800; color: #fff;">🎯 8 Pertanyaan Maut Beasiswa</h3>
+        <p style="font-size: 0.78rem; color: var(--text-3);">Klik tiap pertanyaan untuk melihat kunci cara menjawabnya:</p>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>1. Tell me about yourself and why you deserve this scholarship?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Jangan baca ulang CV! Fokus ke 3 hal: 1) Masalah di Indonesia yang bikin kamu tergerak, 2) Bidang keahlianmu, 3) Perubahan konkret yang mau kamu bawa pulang setelah lulus.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>2. Why this university & country, and why not study in Indonesia?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Sebut nama profesor, laboratorium riset khusus, atau modul kurikulum yang BELUM ADA di universitas Indonesia. Reviewer ingin tahu kamu sudah riset mendalam.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>3. What concrete contribution will you bring back to Indonesia?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Hindari jawaban abstrak seperti "ingin mencerdaskan bangsa". Sebutkan: Lembaga mana yang akan kamu tuju, posisi apa, dan proyek apa yang akan kamu jalankan dalam 1–5 tahun.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>4. What is your biggest failure and how did you resolve it?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Gunakan rumus STAR-L. Ceritakan kegagalan nyata, tapi habiskan 60% waktu untuk menceritakan CARAMU bangkit dan apa pelajaran kepemimpinannya.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>5. Describe a situation where you had a conflict with your team?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Tunjukkan kematangan emosi (EQ). Jelaskan bagaimana kamu mendengarkan sudut pandang orang lain dan mencari titik temu yang adil demi tujuan bersama.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>6. If you don't get this scholarship this year, what will you do?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Tunjukkan ketangguhan mental (*grit*). Tujuan kariermu tidak boleh berhenti hanya karena belum dapat beasiswa tahun ini. Jelaskan rencana cadanganmu untuk terus berkarya dan mendaftar kembali.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>7. Explain your academic focus to a 10-year-old child in simple words.</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Reviewer menguji apakah kamu benar-benar paham bidangmu atau hanya menghafal istilah teknis. Gunakan analogi kehidupan sehari-hari yang mudah dipahami.
+        </div>
+      </div>
+
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>8. What is your biggest weakness and how do you address it?</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <strong>Kunci:</strong> Jangan bilang "kelemahan saya perfeksionis". Jujur sebutkan 1 kelemahan asli (misal: manajemen waktu saat multi-tasking), lalu ceritakan sistem/kebiasaan yang sedang kamu terapkan untuk memperbaikinya.
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Bottom Bar Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" onclick="showView('misi', this)">
+      <span class="nav-icon">⚡</span>
+      <span>Misi Harian</span>
     </button>
-    <button class="tab-item" onclick="switchView('ppt', this)">
-      <span class="tab-icon">📊</span>
-      <span class="tab-label">PPT Guide</span>
+    <button class="nav-btn" onclick="showView('roadmap', this)">
+      <span class="nav-icon">🗺️</span>
+      <span>4 Fase</span>
     </button>
-    <button class="tab-item" onclick="switchView('roadmap', this)">
-      <span class="tab-icon">🗺️</span>
-      <span class="tab-label">Roadmap</span>
+    <button class="nav-btn" onclick="showView('rumus', this)">
+      <span class="nav-icon">🧩</span>
+      <span>Rumus Sakti</span>
+    </button>
+    <button class="nav-btn" onclick="showView('big8', this)">
+      <span class="nav-icon">🎯</span>
+      <span>The Big 8</span>
     </button>
   </nav>
 
   <script>
-    const data = {
-      scholarship: {
-        badge: "Scholarship Qs",
-        target: "Target: 2 Mins",
-        fwName: "Direct Answer & Tie-Back",
-        steps: [
-          { title: "Direct Answer", desc: "1 Kalimat jawaban tegas di awal" },
-          { title: "Key Rationale", desc: "2 Alasan utama / bukti nyata" },
-          { title: "Contribution Tie-Back", desc: "Hubungkan ke dampak bagi Indonesia" }
-        ],
-        prompts: [
-          {
-            text: "Tell me about yourself and why you deserve this master's scholarship over hundreds of other competitive applicants?",
-            tip: "Don't recite your CV. Share your defining spark, your core motivation, and the concrete impact you'll bring upon return."
-          },
-          {
-            text: "Why did you choose this specific university and country instead of continuing your studies in Indonesia?",
-            tip: "Be hyper-specific: mention professors, specialized lab facilities, or curriculum modules not found in Indonesia."
-          },
-          {
-            text: "What concrete contribution will you bring back to Indonesia immediately and 5 years after graduating?",
-            tip: "Avoid vague answers like 'I will educate society'. Mention: Which institution, what policy, and what exact metric."
-          },
-          {
-            text: "What is the biggest failure in your academic or professional life, and how did you resolve it?",
-            tip: "Use the STAR-L framework. Spend 60% of your time on the Action and the Learning, not just the sad situation."
-          },
-          {
-            text: "If you do not receive this scholarship this year, what is your contingency plan?",
-            tip: "Show perseverance. Explain that your ultimate goal remains unchanged and describe your next stepping stone."
-          }
-        ]
+    const missions = [
+      {
+        cat: "Storytelling (STAR-L)",
+        time: "⏱️ Timer: 2.5 Menit",
+        text: "Ceritakan 'The Spark': momen titik balik saat kamu pertama kali sadar ingin mendalami bidang studimu saat ini!",
+        steps: ["Bayangkan hari kejadiannya", "Gunakan deskripsi emosi & fakta", "Hubungkan ke alasanmu apply beasiswa sekarang"]
       },
-      storytelling: {
-        badge: "Storytelling (STAR-L)",
-        target: "Target: 2.5 Mins",
-        fwName: "STAR-L Method",
-        steps: [
-          { title: "S - Situation", desc: "Konteks & masalah (20s)" },
-          { title: "T - Task", desc: "Tantanganmu (15s)" },
-          { title: "A - Action", desc: "Langkah yang kamu ambil (60s)" },
-          { title: "R - Result", desc: "Hasil terukur (30s)" },
-          { title: "L - Learning", desc: "Hikmah kepemimpinan (20s)" }
-        ],
-        prompts: [
-          {
-            text: "Describe a moment when you had to lead a dysfunctional or unmotivated team to achieve a critical deadline.",
-            tip: "Focus on how you empathized, restructured responsibilities, and inspired accountability."
-          },
-          {
-            text: "Tell a story of a time you faced an unexpected hurdle during your thesis or project and had to adapt quickly.",
-            tip: "Highlight problem-solving agility, resourcefulness, and calm decision-making under pressure."
-          },
-          {
-            text: "Share an experience where you received constructive or harsh criticism. How did you process it?",
-            tip: "Show high emotional intelligence (EQ), openness to growth, and subsequent tangible improvement."
-          },
-          {
-            text: "Explain 'The Spark': the defining event that made you passionate about your chosen field of study.",
-            tip: "Use vivid sensory details. Transport the interviewer to that specific day and emotion."
-          }
-        ]
+      {
+        cat: "Scholarship Pitch",
+        time: "⏱️ Timer: 2 Menit",
+        text: "Tell me about yourself and why you deserve this scholarship over hundreds of other applicants?",
+        steps: ["Sebutkan masalah spesifik di Indonesia", "Jelaskan keahlianmu saat ini", "Tutup dengan visi kontribusi konkret"]
       },
-      ppt: {
-        badge: "Solo PPT Pitch",
-        target: "Target: 3-4 Mins",
-        fwName: "PREP Method",
-        steps: [
-          { title: "P - Point", desc: "Pernyataan tesis utama (15s)" },
-          { title: "R - Reason", desc: "Argumen logis / mekanisme (45s)" },
-          { title: "E - Example", desc: "Data / Studi kasus nyata (60s)" },
-          { title: "P - Point", desc: "Kesimpulan & Call to Action (20s)" }
-        ],
-        prompts: [
-          {
-            text: "Deliver a 3-minute pitch defending why your proposed master's thesis topic is urgent to solve right now.",
-            tip: "Use PREP: Hook the listener with a shocking statistic before proposing your novel methodology."
-          },
-          {
-            text: "Present a 3-minute comparative analysis of education/industry challenges in Indonesia vs your study destination.",
-            tip: "Focus on transferability: what specific best practices can be realistically adapted in Indonesia?"
-          },
-          {
-            text: "Pitch an NGO or policy initiative you plan to establish within 3 years of returning to Indonesia.",
-            tip: "Structure: The Unmet Need -> The Operating Model -> The Societal Return on Investment."
-          }
-        ]
+      {
+        cat: "Storytelling (STAR-L)",
+        time: "⏱️ Timer: 2.5 Menit",
+        text: "Ceritakan kegagalan terbesar dalam studi atau pekerjaanmu dan pelajaran berharga yang kamu dapatkan.",
+        steps: ["Latar masalah singkat (20s)", "Langkah perbaikan yang kamu ambil (60s)", "Pelajaran kepemimpinannya (30s)"]
       },
-      impromptu: {
-        badge: "60s Impromptu",
-        target: "Target: 60s",
-        fwName: "Fast PREP",
-        steps: [
-          { title: "Instant Stance", desc: "Ambil posisi dalam 5 detik" },
-          { title: "Two Strong Reasons", desc: "2 Alasan kuat & bukti" },
-          { title: "Punchline Finish", desc: "Penutup yang membekas" }
-        ],
-        prompts: [
-          {
-            text: "Is artificial intelligence doing more harm or good to academic integrity in universities? (Speak for 60s)",
-            tip: "State your position immediately. Provide 2 distinct points and finish with a forward-looking conclusion."
-          },
-          {
-            text: "Should scholarship awardees be legally forced to return to their home country immediately? (Speak for 60s)",
-            tip: "Acknowledge the counter-argument briefly for depth before reinforcing your primary stance."
-          },
-          {
-            text: "What single quality best defines an effective global leader in today's polarized world? (Speak for 60s)",
-            tip: "Pick one core attribute (e.g., Cultural Empathy) and give a brief real-world scenario."
-          }
-        ]
+      {
+        cat: "Academic Pitch (PREP)",
+        time: "⏱️ Timer: 3 Menit",
+        text: "Jelaskan isu paling mendesak di Indonesia dalam bidangmu dan bagaimana studimu di luar negeri akan menyelesaikannya!",
+        steps: ["P: Sebutkan isu utamanya", "R: Alasan kenapa belum teratasi", "E: Contoh studi kasus", "P: Rekomendasi solusimu"]
+      },
+      {
+        cat: "60s Impromptu",
+        time: "⏱️ Timer: 60 Detik",
+        text: "Apakah penerima beasiswa wajib langsung pulang ke Indonesia setelah lulus, atau boleh magang dulu di luar negeri?",
+        steps: ["Ambil sikap dalam 5 detik", "Berikan 2 argumen logis", "Tutup dengan kesimpulan tegas"]
+      },
+      {
+        cat: "Scholarship Pitch",
+        time: "⏱️ Timer: 2 Menit",
+        text: "Why did you choose this specific university and country instead of staying in Indonesia?",
+        steps: ["Sebutkan nama lab/profesor spesifik", "Bandingkan kurikulumnya dengan Indonesia", "Jelaskan transfer ilmu saat pulang"]
       }
-    };
+    ];
 
-    let currentCat = 'scholarship';
-    let currentPromptIdx = 0;
-    let timerInterval = null;
-    let seconds = 0;
-    let isRecording = false;
-    let mediaRecorder = null;
-    let audioChunks = [];
+    let currentMissionIdx = 0;
 
-    function setCategory(cat, btn) {
-      currentCat = cat;
-      currentPromptIdx = 0;
+    function generateMission() {
+      currentMissionIdx = (currentMissionIdx + 1) % missions.length;
+      const m = missions[currentMissionIdx];
       
-      document.querySelectorAll('.cat-pill').forEach(el => el.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      document.getElementById('misiCategory').innerText = m.cat;
+      document.getElementById('misiTime').innerText = m.time;
+      document.getElementById('misiText').innerText = `"${m.text}"`;
+    }
+
+    function showView(viewId, btn) {
+      document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.switch-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+      document.getElementById(`view-${viewId}`).classList.add('active');
       
-      document.getElementById('categoryBadge').innerText = data[cat].badge;
-      document.getElementById('promptTarget').innerText = data[cat].target;
-      document.getElementById('fwName').innerText = data[cat].fwName;
-      
-      renderFrameworkSteps();
-      renderPrompt();
-    }
-
-    function renderPrompt() {
-      const list = data[currentCat].prompts;
-      const item = list[currentPromptIdx % list.length];
-      
-      document.getElementById('promptText').innerText = `"${item.text}"`;
-      document.getElementById('promptTip').innerHTML = `💡 <strong>Interviewer Strategy:</strong> ${item.tip}`;
-      document.getElementById('promptType').innerText = `${data[currentCat].badge} #${(currentPromptIdx % list.length) + 1}`;
-    }
-
-    function nextPrompt() {
-      currentPromptIdx++;
-      renderPrompt();
-    }
-
-    function copyPrompt() {
-      const txt = document.getElementById('promptText').innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        alert("Pertanyaan berhasil disalin!");
-      });
-    }
-
-    function renderFrameworkSteps() {
-      const steps = data[currentCat].steps;
-      const container = document.getElementById('frameworkSteps');
-      container.innerHTML = steps.map(s => `
-        <div class="step-badge">
-          <strong>${s.title}</strong>
-          <span>${s.desc}</span>
-        </div>
-      `).join('');
-    }
-
-    function toggleFramework() {
-      const steps = document.getElementById('frameworkSteps');
-      const arrow = document.getElementById('fwArrow');
-      if (steps.style.display === 'none') {
-        steps.style.display = 'grid';
-        arrow.innerText = '▼';
-      } else {
-        steps.style.display = 'none';
-        arrow.innerText = '▶';
-      }
-    }
-
-    // Timer logic
-    function startTimer() {
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        seconds++;
-        const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
-        const secs = String(seconds % 60).padStart(2, '0');
-        document.getElementById('timer').innerText = `${mins}:${secs}`;
-      }, 1000);
-    }
-
-    function resetTimer() {
-      clearInterval(timerInterval);
-      seconds = 0;
-      document.getElementById('timer').innerText = "00:00";
-      if (isRecording) {
-        toggleRecord();
-      }
-    }
-
-    // Recording logic (iOS Safari compatible)
-    async function toggleRecord() {
-      const btn = document.getElementById('recordBtn');
-      const hint = document.getElementById('recordHint');
-
-      if (!isRecording) {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          
-          let options = {};
-          if (MediaRecorder.isTypeSupported('audio/mp4')) {
-            options = { mimeType: 'audio/mp4' };
-          } else if (MediaRecorder.isTypeSupported('audio/webm')) {
-            options = { mimeType: 'audio/webm' };
-          }
-
-          mediaRecorder = new MediaRecorder(stream, options);
-          audioChunks = [];
-
-          mediaRecorder.ondataavailable = e => {
-            if (e.data && e.data.size > 0) audioChunks.push(e.data);
-          };
-
-          mediaRecorder.onstop = () => {
-            const blobType = mediaRecorder.mimeType || 'audio/mp4';
-            const audioBlob = new Blob(audioChunks, { type: blobType });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            const player = document.getElementById('audioPlayback');
-            player.src = audioUrl;
-            document.getElementById('audioBox').style.display = 'block';
-          };
-
-          mediaRecorder.start(250);
-          isRecording = true;
-          btn.classList.add('recording');
-          btn.innerText = '⏹';
-          hint.innerText = "🔴 Sedang merekam... Bicara runut & jaga intonasi!";
-          startTimer();
-        } catch (err) {
-          console.error(err);
-          // Fallback to timer only if mic denied
-          isRecording = true;
-          btn.classList.add('recording');
-          btn.innerText = '⏹';
-          hint.innerText = "⏱ Timer berjalan (Izin mikrofon belum aktif).";
-          startTimer();
-        }
-      } else {
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-          mediaRecorder.stop();
-          mediaRecorder.stream.getTracks().forEach(t => t.stop());
-        }
-        clearInterval(timerInterval);
-        isRecording = false;
-        btn.classList.remove('recording');
-        btn.innerText = '⏺';
-        hint.innerText = "✅ Selesai! Putar rekamanmu di bawah untuk evaluasi.";
-      }
-    }
-
-    // Switch Bottom Views (iOS Tabs)
-    function switchView(viewName, btn) {
-      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
-      
-      document.getElementById(`view-${viewName}`).classList.add('active');
-      if (btn) btn.classList.add('active');
+      // Update active state
+      document.querySelectorAll(`.switch-btn[onclick*="${viewId}"]`).forEach(b => b.classList.add('active'));
+      document.querySelectorAll(`.nav-btn[onclick*="${viewId}"]`).forEach(b => b.classList.add('active'));
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function copyPhrase(el) {
-      const text = el.innerText.replace(/"/g, '');
-      navigator.clipboard.writeText(text).then(() => {
-        alert(`Frasa disalin:\n"${text}"`);
-      });
+    function toggleQA(triggerEl) {
+      const body = triggerEl.nextElementSibling;
+      const arrow = triggerEl.querySelector('span');
+      if (body.style.display === 'block') {
+        body.style.display = 'none';
+        arrow.innerText = '▼';
+      } else {
+        body.style.display = 'block';
+        arrow.innerText = '▲';
+      }
     }
-
-    // Init App
-    renderFrameworkSteps();
-    renderPrompt();
   </script>
 </body>
 </html>
