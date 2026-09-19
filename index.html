@@ -573,7 +573,7 @@
     </a>
 
     <!-- View Switcher -->
-    <div class="view-switcher">
+    <div class="view-switcher" style="overflow-x: auto; scrollbar-width: none;">
       <button class="switch-btn active" onclick="showView('misi', this)">
         ⚡ Misi Harian
       </button>
@@ -585,6 +585,9 @@
       </button>
       <button class="switch-btn" onclick="showView('big8', this)">
         🎯 The Big 8
+      </button>
+      <button class="switch-btn" onclick="showView('smalltalk', this)">
+        💬 Small Talk
       </button>
     </div>
 
@@ -951,6 +954,124 @@
 
     </section>
 
+    <!-- VIEW 5: SMALL TALK & CONVERSATION BANK -->
+    <section id="view-smalltalk" class="view-panel">
+      
+      <!-- Golden Rule A+D+Q -->
+      <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 1.25rem; padding: 1.15rem; margin-bottom: 1rem;">
+        <div style="font-size: 0.75rem; font-weight: 800; color: #a5b4fc; text-transform: uppercase; margin-bottom: 0.25rem;">
+          ⚡ Rumus Emas Ngobrol Sama Bule / Tourist
+        </div>
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+          The A + D + Q Rule (Answer + Detail + Question)
+        </h3>
+        <p style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.4; margin-bottom: 0.6rem;">
+          Jangan pernah jawab cuma 1 kata! (Misal: <em>"Where are you from?" ➔ "Jakarta"</em> = Obrolan langsung mati krik-krik).
+        </p>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 0.65rem; padding: 0.65rem 0.8rem; font-size: 0.78rem;">
+          <div><span style="color:#34d399; font-weight:bold;">A (Answer):</span> "I'm originally from Jakarta, the capital of Indonesia."</div>
+          <div><span style="color:#38bdf8; font-weight:bold;">D (Detail):</span> "It's a huge, bustling city known for crazy traffic and incredible street food."</div>
+          <div><span style="color:#fbbf24; font-weight:bold;">Q (Question):</span> "Have you ever visited Southeast Asia before?"</div>
+        </div>
+      </div>
+
+      <!-- 5 Topik Percakapan -->
+      <div style="margin-bottom: 0.75rem;">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: #fff;">📚 5 Topik Obrolan Paling Sering Muncul</h4>
+        <p style="font-size: 0.75rem; color: #94a3b8;">Klik tiap kartu untuk lihat contoh jawaban lisan & kosakata:</p>
+      </div>
+
+      <!-- Card 1: Hometown -->
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>📍 1. Hometown & Roots (Kota Asal & Makanan Khas)</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <p style="color:#38bdf8; margin-bottom:0.4rem;"><strong>💬 Pertanyaan yang Sering Muncul:</strong> <em>"Where are you from originally?", "What's your hometown like?"</em></p>
+          <div style="background:rgba(255,255,255,0.03); padding:0.65rem; border-radius:0.5rem; margin-bottom:0.5rem;">
+            <strong>Template Jawabanmu:</strong><br>
+            <em>"I'm originally from [Bandung/Surabaya/Yogya]. Unlike the humid coastal areas, my city is known for its cool mountain breeze and incredible culinary scene. If you ever go there, you have to try our local street food—it's a burst of savory flavors!"</em>
+          </div>
+          <div style="font-size:0.75rem; color:#a5b4fc;">
+            <strong>🔑 Power Words:</strong> bustling metropolis, hidden gem, culinary paradise, laid-back vibe, rich cultural heritage.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Campus & Major -->
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>🎓 2. Campus & Major (Kuliah & Jurusan)</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <p style="color:#38bdf8; margin-bottom:0.4rem;"><strong>💬 Pertanyaan yang Sering Muncul:</strong> <em>"What are you studying?", "What made you choose that major?"</em></p>
+          <div style="background:rgba(255,255,255,0.03); padding:0.65rem; border-radius:0.5rem; margin-bottom:0.5rem;">
+            <strong>Template Jawabanmu:</strong><br>
+            <em>"I majored in [Computer Science / Economics] at [Nama Kampus]. What really drew me to this field was seeing how local businesses struggle to digitalize. In my final year, I completed a thesis on [topikmu], which sparked my passion to pursue higher education abroad."</em>
+          </div>
+          <div style="font-size:0.75rem; color:#a5b4fc;">
+            <strong>🔑 Power Words:</strong> major in, hands-on experience, capstone project, steep learning curve, bridge the gap.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Social & Cultural Issues -->
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>🌏 3. Social Issues & Indonesian Culture (Isu Sosial & Gotong Royong)</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <p style="color:#38bdf8; margin-bottom:0.4rem;"><strong>💬 Pertanyaan yang Sering Muncul:</strong> <em>"What are the biggest challenges in your country?", "What's unique about Indonesia?"</em></p>
+          <div style="background:rgba(255,255,255,0.03); padding:0.65rem; border-radius:0.5rem; margin-bottom:0.5rem;">
+            <strong>Template Jawabanmu:</strong><br>
+            <em>"A lot of travelers only know Bali, but Indonesia has over 17,000 islands! One core value I love is 'gotong royong'—our communal spirit where neighbors collectively help each other. On the other hand, our biggest systemic challenge is the educational disparity between major urban centers and rural regions."</em>
+          </div>
+          <div style="font-size:0.75rem; color:#a5b4fc;">
+            <strong>🔑 Power Words:</strong> cultural mosaic, communal spirit, socioeconomic disparity, digital leapfrogging, hospitality.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Coffee & Weekend Habits -->
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>☕ 4. Lifestyle & Coffee Culture (Gaya Hidup & Nongkrong)</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <p style="color:#38bdf8; margin-bottom:0.4rem;"><strong>💬 Pertanyaan yang Sering Muncul:</strong> <em>"What do you do in your downtime?", "Are you into coffee?"</em></p>
+          <div style="background:rgba(255,255,255,0.03); padding:0.65rem; border-radius:0.5rem; margin-bottom:0.5rem;">
+            <strong>Template Jawabanmu:</strong><br>
+            <em>"In my downtime, I love exploring specialty coffee shops to read or unwind. Indonesia is one of the world's top coffee producers, so we have an amazing third-wave coffee scene here—especially single-origin beans from Aceh and Toraja. Are you more of a coffee or tea person?"</em>
+          </div>
+          <div style="font-size:0.75rem; color:#a5b4fc;">
+            <strong>🔑 Power Words:</strong> downtime, unwind, specialty coffee, creature of habit, single-origin.
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Follow-Up Questions -->
+      <div class="qa-accordion">
+        <div class="qa-trigger" onclick="toggleQA(this)">
+          <h4>🤝 5. Powerful Follow-Up Questions (Tanya Balik yang Keren)</h4>
+          <span>▼</span>
+        </div>
+        <div class="qa-body">
+          <p style="margin-bottom:0.4rem;">Gunakan pertanyaan ini ketika lawan bicaramu selesai cerita agar obrolan terus seru:</p>
+          <ul style="margin-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; font-size:0.78rem;">
+            <li>💬 <em>"That's fascinating! How did you first get into that?"</em></li>
+            <li>💬 <em>"What has been the biggest culture shock for you since arriving here?"</em></li>
+            <li>💬 <em>"If you could recommend one book or dish from your country, what would it be?"</em></li>
+            <li>💬 <em>"How does the lifestyle here compare to what you have back home?"</em></li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
   </div>
 
   <!-- Bottom Bar Navigation -->
@@ -971,19 +1092,13 @@
       <span class="nav-icon">🎯</span>
       <span>The Big 8</span>
     </button>
+    <button class="nav-btn" onclick="showView('smalltalk', this)">
+      <span class="nav-icon">💬</span>
+      <span>Small Talk</span>
+    </button>
   </nav>
 
   <script>
-    const missions = [
-      {
-        cat: "Storytelling (STAR-L)",
-        time: "⏱️ Timer: 2.5 Menit",
-        text: "Ceritakan 'The Spark': momen titik balik saat kamu pertama kali sadar ingin mendalami bidang studimu saat ini!",
-        steps: ["Bayangkan hari kejadiannya", "Gunakan deskripsi emosi & fakta", "Hubungkan ke alasanmu apply beasiswa sekarang"]
-      },
-      {
-        cat: "Scholarship Pitch",
-        time: "⏱️ Timer: 2 Menit",
     const missions = [
       {
         cat: "Storytelling (STAR-L)",
