@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b0f19" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>ScholarSpeak — Solo English Speaking & Scholarship Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #131c2e;
+      --bg-tertiary: #1b273f;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.35);
+      --accent-primary: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --accent-secondary: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.09) 0%, transparent 45%);
+      background-attachment: fixed;
+      padding-bottom: 2rem;
+    }
+
+    header {
+      padding: 2rem 1rem 1.25rem;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 0.25rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+        margin: 1rem auto;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.2rem;
+      }
+    }
+
+    .card:hover {
+      border-color: var(--card-hover-border);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .guide-banner {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .guide-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .guide-toggle-title {
+      font-weight: 700;
+      color: #818cf8;
+      font-size: 0.85rem;
+    }
+
+    .guide-body {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-top: 0.75rem;
+    }
+
+    .guide-body ol {
+      margin-left: 1.2rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--bg-primary);
+      padding: 0.35rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--card-border);
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: fit-content;
+      white-space: nowrap;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.6rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-main);
+    }
+
+    .tab-btn.active {
+      background: var(--accent-primary);
+      color: #fff;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* Drill Box */
+    .prompt-box {
+      background: var(--bg-tertiary);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 0.85rem;
+      padding: 1.25rem;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .prompt-type {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-secondary);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .prompt-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      line-height: 1.5;
+    }
+
+    .prompt-tip {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-top: 0.65rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.15rem;
+      border-radius: 0.65rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: all 0.2s ease;
+      border: none;
+      min-height: 42px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+      flex: 1;
+    }
+    .btn-primary:hover, .btn-primary:active {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover, .btn-outline:active {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    /* Recording & Timer Section */
+    .studio-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.75rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 1.25rem;
+    }
+
+    .timer-display {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 2px;
+      margin-bottom: 0.85rem;
+      text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      .timer-display {
+        font-size: 2.5rem;
+      }
+    }
+
+    .record-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-record {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #ef4444;
+      border: 4px solid rgba(239, 68, 68, 0.25);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.6rem;
+    }
+
+    .btn-record.recording {
+      animation: pulse 1.5s infinite;
+      border-radius: 14px;
+      width: 56px;
+      height: 56px;
+      background: #dc2626;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .audio-player-wrapper {
+      width: 100%;
+      margin-top: 1.25rem;
+      display: none;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 0.5rem;
+      outline: none;
+    }
+
+    /* Framework Guide */
+    .framework-pill-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 0.6rem;
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+    }
+
+    .step-pill strong {
+      display: block;
+      color: var(--accent-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .step-pill span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      display: block;
+    }
+
+    /* Slide Blueprint Card */
+    .slide-blueprint {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1.15rem;
+    }
+
+    .slide-step {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .slide-num {
+      background: var(--accent-primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.35rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .slide-desc h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .slide-desc p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .phrase-tag {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.1);
+      color: #a5b4fc;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.35rem;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      margin-top: 0.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge-tag">🎓 Study Abroad Speaking Studio</div>
+    <h1>Solo Speaking & Scholarship Drill</h1>
+    <p class="subtitle">Platform latihan mandiri: Storytelling (STAR-L), Solo PPT Pitch (PREP), dan Simulasi Wawancara Beasiswa Luar Negeri.</p>
+  </header>
+
+  <div class="container">
+    <!-- LEFT COLUMN: Practice Prompts & Story Generator -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🎯 Drill Prompt Generator</div>
+      </div>
+
+      <!-- Banner Petunjuk Cara Pakai -->
+      <div class="guide-banner">
+        <div class="guide-toggle" onclick="toggleGuide()">
+          <span class="guide-toggle-title">📖 CARA PAKAI (Klik untuk buka/tutup)</span>
+          <span id="guide-arrow" style="color: #818cf8; font-weight: bold;">▼</span>
+        </div>
+        <div id="guide-content" class="guide-body">
+          <ol>
+            <li><strong>Pilih Tab Kategori:</strong> Klik tab di bawah (<em>Scholarship Qs</em>, <em>Storytelling</em>, dll).</li>
+            <li><strong>Pikirkan Poin (30 Detik):</strong> Lihat pertanyaan dan contekan struktur di bawah. Jangan bikin naskah! Bayangkan 2-3 poin kunci di kepala.</li>
+            <li><strong>Pencet Tombol Merah (⏺ Record):</strong> Langsung bicara bahasa Inggris! Begitu selesai, klik stop & dengarkan playback suaramu untuk evaluasi mandiri.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchCategory('scholarship', this)">Scholarship Qs</button>
+        <button class="tab-btn" onclick="switchCategory('storytelling', this)">Storytelling (STAR-L)</button>
+        <button class="tab-btn" onclick="switchCategory('ppt', this)">Solo PPT Pitch</button>
+        <button class="tab-btn" onclick="switchCategory('impromptu', this)">60s Impromptu</button>
+      </div>
+
+      <div class="prompt-box">
+        <div>
+          <div class="prompt-type" id="prompt-category">Scholarship Interview</div>
+          <div class="prompt-text" id="prompt-content">
+            "Tell me about yourself and why you deserve this master's scholarship over hundreds of other competitive applicants?"
+          </div>
+        </div>
+        <div class="prompt-tip" id="prompt-tip">
+          💡 <strong>Tip:</strong> Don't recite your CV. Focus on your overarching vision, core driver, and key differentiator.
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="generateNewPrompt()">
+          🎲 Roll New Prompt
+        </button>
+        <button class="btn btn-outline" onclick="copyCurrentPrompt()">
+          📋 Copy Prompt
+        </button>
+      </div>
+
+      <div style="margin-top: 1.75rem;">
+        <h3 style="font-size: 0.9rem; color: #fff; margin-bottom: 0.6rem;">⚡ Structure Framework in Action:</h3>
+        
+        <div id="framework-display" class="framework-pill-group">
+          <!-- Dynamically updated based on active tab -->
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Solo Recording Studio & Presentation Timer -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🎙️ Solo Voice Studio & Timer</div>
+        <span id="target-time-label" style="font-size: 0.8rem; color: var(--accent-amber); font-weight: 600;">Target: 2 Mins</span>
+      </div>
+
+      <div class="studio-panel">
+        <div class="timer-display" id="timer">00:00</div>
+        
+        <div class="record-controls">
+          <button class="btn-record" id="recordBtn" onclick="toggleRecording()" title="Start / Stop Recording">
+            ⏺
+          </button>
+          <button class="btn btn-outline" onclick="resetTimer()" style="padding: 0.6rem 0.9rem;">
+            Reset
+          </button>
+        </div>
+
+        <p id="recordStatus" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">
+          Klik tombol merah untuk mulai merekam. Izinkan mic jika browser meminta.
+        </p>
+
+        <div class="audio-player-wrapper" id="audioWrapper">
+          <p style="font-size: 0.78rem; color: var(--accent-emerald); margin-bottom: 0.5rem; font-weight: 600;">
+            ✅ Rekaman tersimpan! Dengarkan hasil bicaramu di bawah:
+          </p>
+          <audio id="audioPlayback" controls></audio>
+        </div>
+      </div>
+
+      <!-- PPT Solo Deck Framework -->
+      <div class="slide-blueprint">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+          <h4 style="color: #fff; font-size: 0.9rem;">📊 The 3-Slide Solo PPT Drill</h4>
+          <span style="font-size: 0.72rem; color: var(--text-dim);">Max: 3-4 Mins</span>
+        </div>
+        
+        <div class="slide-step">
+          <div class="slide-num">S1</div>
+          <div class="slide-desc">
+            <h4>Hook & Problem Statement</h4>
+            <p>1 stat / shock fact. Why is this issue urgent in your field?</p>
+            <div class="phrase-tag">"Today, I want to address a pressing paradox..."</div>
+          </div>
+        </div>
+
+        <div class="slide-step">
+          <div class="slide-num">S2</div>
+          <div class="slide-desc">
+            <h4>The Solution / Your Research Angle</h4>
+            <p>What methodology or policy intervention are you proposing?</p>
+            <div class="phrase-tag">"The cornerstone of my proposed study lies in..."</div>
+          </div>
+        </div>
+
+        <div class="slide-step" style="margin-bottom: 0;">
+          <div class="slide-num">S3</div>
+          <div class="slide-desc">
+            <h4>Impact & Return Contribution</h4>
+            <p>How will this directly benefit Indonesia/society upon return?</p>
+            <div class="phrase-tag">"Ultimately, by implementing this framework..."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>ScholarSpeak Studio — Dedicated to your Study Abroad journey. Keep speaking every single day!</p>
+  </footer>
+
+  <script>
+    const prompts = {
+      scholarship: [
+        {
+          text: "Tell me about yourself and why you deserve this master's scholarship over hundreds of other competitive applicants?",
+          tip: "Don't recite your CV. Focus on your overarching vision, core driver, and key differentiator."
+        },
+        {
+          text: "Why did you choose this specific university and country instead of staying in Indonesia?",
+          tip: "Be hyper-specific: mention professors, lab research, specific course modules, or comparative advantages."
+        },
+        {
+          text: "What is the biggest challenge or failure in your academic/professional life, and what did it teach you?",
+          tip: "Use the STAR-L framework. Spend 60% of the time on the Action and Learning, not just the sad situation."
+        },
+        {
+          text: "What concrete contribution will you bring back to Indonesia immediately and 5 years after graduating?",
+          tip: "Avoid vague statements like 'I will educate people'. State: Who, What, Which sector, and through what role."
+        },
+        {
+          text: "If you don't receive this scholarship this year, what is your contingency plan?",
+          tip: "Demonstrate resilience. Show that your career goal is immutable, with or without this specific grant."
+        }
+      ],
+      storytelling: [
+        {
+          text: "Describe a moment when you had to lead a dysfunctional or unmotivated team to finish a project.",
+          tip: "Situation (20s) -> Task (15s) -> Action you personally took (60s) -> Result (30s) -> Learning (20s)."
+        },
+        {
+          text: "Share a story about an unexpected obstacle during your thesis or work project and how you solved it.",
+          tip: "Emphasize critical thinking and resourcefulness under resource constraints."
+        },
+        {
+          text: "Tell a story of a time you received harsh feedback or criticism. How did you handle it emotionally and practically?",
+          tip: "Show emotional maturity, openness to feedback, and adaptive agility."
+        },
+        {
+          text: "Explain the pivotal moment ('The Spark') that made you passionate about your chosen major.",
+          tip: "Start with sensory details or a real-life observation that opened your eyes to this issue."
+        }
+      ],
+      ppt: [
+        {
+          text: "Deliver a 3-minute pitch defending why your proposed research/study topic is critical to solve right now.",
+          tip: "Use PREP: Point (your topic) -> Reason (the urgency) -> Example (current gap) -> Point (the impact)."
+        },
+        {
+          text: "Present a 3-slide analysis comparing higher education in Indonesia vs your destination country.",
+          tip: "Focus on transferability: what specific methodology can be adapted back home?"
+        },
+        {
+          text: "Pitch a startup or NGO initiative you want to launch after finishing your master's degree.",
+          tip: "Hook the audience in the first 20 seconds. State the problem before offering the solution."
+        }
+      ],
+      impromptu: [
+        {
+          text: "Is artificial intelligence doing more harm or good to academic integrity? (Speak for 60 seconds)",
+          tip: "Take a stand in 5 seconds. Give 2 strong reasons and conclude with a forward-looking thought."
+        },
+        {
+          text: "Should scholarship recipients be legally required to return home immediately? (Speak for 60 seconds)",
+          tip: "Use PREP. Acknowledge the counter-argument for nuance before solidifying your stance."
+        },
+        {
+          text: "What makes a truly effective global leader in today's divided world? (Speak for 60 seconds)",
+          tip: "Define 2 core traits (e.g., cultural empathy + decisive ethics) with quick real-world examples."
+        }
+      ]
+    };
+
+    const frameworks = {
+      scholarship: [
+        { name: "Direct Answer", desc: "Start with a 1-sentence bottom-line answer." },
+        { name: "Supporting Pillars", desc: "Present 2-3 concise rationale points." },
+        { name: "Tie-Back", desc: "Connect back to scholarship mission & future contribution." }
+      ],
+      storytelling: [
+        { name: "S - Situation", desc: "Context & stakes (15-20s)" },
+        { name: "T - Task", desc: "Your specific hurdle (15s)" },
+        { name: "A - Action", desc: "What YOU executed (60s)" },
+        { name: "R - Result", desc: "Measurable outcome (30s)" },
+        { name: "L - Learning", desc: "Insight gained (20s)" }
+      ],
+      ppt: [
+        { name: "P - Point", desc: "The core thesis (15s)" },
+        { name: "R - Reason", desc: "Underlying mechanism (45s)" },
+        { name: "E - Example", desc: "Case study / Data point (60s)" },
+        { name: "P - Point", desc: "Actionable summary (20s)" }
+      ],
+      impromptu: [
+        { name: "Hook / Stance", desc: "Immediate clear position" },
+        { name: "Point 1 & 2", desc: "Two bullet-proof arguments" },
+        { name: "Wrap-up Punch", desc: "Memorable concluding sentence" }
+      ]
+    };
+
+    let currentCategory = 'scholarship';
+    let timerInterval = null;
+    let secondsElapsed = 0;
+    let isRecording = false;
+    let mediaRecorder = null;
+    let audioChunks = [];
+
+    function toggleGuide() {
+      const content = document.getElementById('guide-content');
+      const arrow = document.getElementById('guide-arrow');
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        arrow.innerText = '▼';
+      } else {
+        content.style.display = 'none';
+        arrow.innerText = '▶';
+      }
+    }
+
+    function switchCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else if (window.event && window.event.target) {
+        window.event.target.classList.add('active');
+      }
+
+      const targetLabel = document.getElementById('target-time-label');
+      if (cat === 'impromptu') targetLabel.innerText = "Target: 60s";
+      else if (cat === 'ppt') targetLabel.innerText = "Target: 3-4 Mins";
+      else if (cat === 'storytelling') targetLabel.innerText = "Target: 2.5 Mins";
+      else targetLabel.innerText = "Target: 2 Mins";
+
+      renderFramework();
+      generateNewPrompt();
+    }
+
+    function renderFramework() {
+      const fwList = frameworks[currentCategory] || frameworks.scholarship;
+      const container = document.getElementById('framework-display');
+      container.innerHTML = fwList.map(item => `
+        <div class="step-pill">
+          <strong>${item.name}</strong>
+          <span>${item.desc}</span>
+        </div>
+      `).join('');
+    }
+
+    function generateNewPrompt() {
+      const list = prompts[currentCategory];
+      const random = list[Math.floor(Math.random() * list.length)];
+      
+      document.getElementById('prompt-category').innerText = currentCategory.toUpperCase();
+      document.getElementById('prompt-content').innerText = `"${random.text}"`;
+      document.getElementById('prompt-tip').innerHTML = `💡 <strong>Tip:</strong> ${random.tip}`;
+    }
+
+    function copyCurrentPrompt() {
+      const text = document.getElementById('prompt-content').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Prompt copied to clipboard!");
+      });
+    }
+
+    // Timer logic
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+      const secs = String(secondsElapsed % 60).padStart(2, '0');
+      document.getElementById('timer').innerText = `${mins}:${secs}`;
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      secondsElapsed = 0;
+      updateTimerDisplay();
+      if (isRecording) {
+        toggleRecording();
+      }
+    }
+
+    // Audio recording logic using MediaRecorder
+    async function toggleRecording() {
+      const recordBtn = document.getElementById('recordBtn');
+      const statusText = document.getElementById('recordStatus');
+
+      if (!isRecording) {
+        // Start recording
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+
+          mediaRecorder.ondataavailable = event => {
+            audioChunks.push(event.data);
+          };
+
+          mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audioPlayback = document.getElementById('audioPlayback');
+            audioPlayback.src = audioUrl;
+            document.getElementById('audioWrapper').style.display = 'block';
+          };
+
+          mediaRecorder.start();
+          isRecording = true;
+          recordBtn.classList.add('recording');
+          recordBtn.innerText = '⏹';
+          statusText.innerText = "🔴 Sedang merekam suara... Bicara dengan tenang & percaya diri!";
+          startTimer();
+        } catch (err) {
+          alert("Akses mikrofon ditolak atau tidak tersedia. Timer tetap berjalan.");
+          isRecording = true;
+          recordBtn.classList.add('recording');
+          recordBtn.innerText = '⏹';
+          statusText.innerText = "⏱ Timer berjalan tanpa perekam audio.";
+          startTimer();
+        }
+      } else {
+        // Stop recording
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+          mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        }
+        clearInterval(timerInterval);
+        isRecording = false;
+        recordBtn.classList.remove('recording');
+        recordBtn.innerText = '⏺';
+        statusText.innerText = "✅ Selesai! Putar rekaman suaramu di player bawah untuk evaluasi.";
+      }
+    }
+
+    // Init
+    renderFramework();
+  </script>
+</body>
+</html>
