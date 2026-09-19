@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Pitch Slide — IT UMY Scholarship Candidate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #07090e;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+    }
+
+    /* 16:9 Slide Canvas */
+    .slide-deck-frame {
+      width: 100%;
+      max-width: 1050px;
+      aspect-ratio: 16 / 9;
+      background: #0f1424;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-deck-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #06b6d4, #10b981);
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .badge-pill {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #818cf8;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2.15rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: #06b6d4;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    /* 3 Visual Cards */
+    .grid-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .card-pillar {
+      background: rgba(23, 31, 52, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .pillar-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .p-cyan .pillar-label { color: #06b6d4; }
+    .p-indigo .pillar-label { color: #818cf8; }
+    .p-emerald .pillar-label { color: #34d399; }
+
+    .pillar-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+
+    /* Bottom Status */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1rem;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .candidate-name {
+      color: #f1f5f9;
+      font-weight: 700;
+    }
+
+    /* Floating Practice Prompter */
+    .speech-prompter {
+      width: 100%;
+      max-width: 1050px;
+      margin-top: 1.25rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px dashed rgba(99, 102, 241, 0.35);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .prompter-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .prompter-text h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #a5b4fc;
+      margin-bottom: 0.4rem;
+    }
+
+    .prompter-text p {
+      font-size: 0.92rem;
+      color: #f8fafc;
+      line-height: 1.55;
+    }
+
+    .prompter-text p em {
+      color: #38bdf8;
+      font-style: normal;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- THE SLIDE CANVAS (16:9) -->
+  <div class="slide-deck-frame">
+    
+    <div class="slide-header">
+      <div>
+        <div class="badge-pill">Master's Scholarship Pitch • Candidate Profile</div>
+        <h1>From The Rain City to Cyber Defense</h1>
+        <div class="subtitle">Engineering Resilient Cloud Infrastructure for Indonesia</div>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #f59e0b; font-weight: 700;">
+        Slide 01 / 01
+      </div>
+    </div>
+
+    <!-- 3 Pillars Grid -->
+    <div class="grid-pillars">
+      
+      <!-- Card 1: Roots -->
+      <div class="card-pillar p-cyan">
+        <div>
+          <div class="pillar-icon">📍🌧️</div>
+          <div class="pillar-label">My Roots & Trajectory</div>
+          <div class="pillar-title">Tegal ➔ Bogor ➔ Jogja</div>
+          <p class="pillar-desc">
+            Born in Tegal, shaped by the rain of Bogor, and currently pursuing Information Technology at UMY Yogyakarta.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Technical Focus -->
+      <div class="card-pillar p-indigo">
+        <div>
+          <div class="pillar-icon">🛡️☁️</div>
+          <div class="pillar-label">Technical Specialization</div>
+          <div class="pillar-title">Resilient Cloud & Security</div>
+          <p class="pillar-desc">
+            Driven by national data vulnerabilities: solving single-point-of-failure risks in multi-island public sector IT.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: The Mission -->
+      <div class="card-pillar p-emerald">
+        <div>
+          <div class="pillar-icon">🌏🚀</div>
+          <div class="pillar-label">The Global Mission</div>
+          <div class="pillar-title">Knowledge Repatriation</div>
+          <p class="pillar-desc">
+            Mastering world-class computing standards overseas to build sovereign, unbreachable digital systems back home.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer">
+      <div>
+        Candidate: <span class="candidate-name">IT Undergraduate, Universitas Muhammadiyah Yogyakarta</span>
+      </div>
+      <div>Target: LPDP / Chevening / AAS Master's Fellowship</div>
+    </div>
+
+  </div>
+
+  <!-- SPEECH PROMPTER (FOR VOICE MEMOS DRILL) -->
+  <div class="speech-prompter">
+    <div class="prompter-icon">🎙️</div>
+    <div class="prompter-text">
+      <h4>Naskah Lisan yang Kamu Ucapkan Sambil Menatap Slide Ini (45 Detik):</h4>
+      <p>
+        <em>"Hello, distinguished interviewers.</em> My name is [Sebut Namamu], and I study Information Technology at Universitas Muhammadiyah Yogyakarta.<br><br>
+        I was born in Tegal, grew up in Bogor—the Rain City—and I am currently pursuing my degree here in Jogja. My passion lies in engineering resilient cloud and cybersecurity systems, inspired by the critical data challenges facing Indonesia today.<br><br>
+        I am pursuing this master's scholarship because I want to master global computing standards, and bring that expertise directly back home to protect Indonesia's digital sovereignty."
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
